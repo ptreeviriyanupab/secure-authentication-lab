@@ -36,6 +36,7 @@ def register_form():
     <form method="post" action="/register">
         Username: <input type="text" name="username"><br><br>
         Password: <input type="password" name="password"><br><br>
+        Confirm Password: <input type="password" name="confirm_password"><br><br>
         <input type="submit" value="Register">
     </form>
     <p><a href="/login">Already have an account? Log in</a></p>
@@ -43,7 +44,17 @@ def register_form():
 
 
 @app.post("/register", response_class=HTMLResponse)
-def register(username: str = Form(...), password: str = Form(...)):
+def register(
+    username: str = Form(...),
+    password: str = Form(...),
+    confirm_password: str = Form(...),
+):
+    if password != confirm_password:
+        return """
+        <p>Passwords do not match.</p>
+        <p><a href="/register">Try again</a></p>
+        """
+
     # Argon2id hashing happens here -- only the hash is ever stored.
     password_hash = security.hash_password(password)
 
