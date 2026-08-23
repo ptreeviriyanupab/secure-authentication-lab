@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+    <h1>Create an account</h1>
+
+    {% if error %}
+        <div class="alert alert-error">{{ error }}</div>
+    {% endif %}
+
+    <form method="post" action="/register">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" value="{{ username }}"
+               minlength="3" maxlength="32" required autofocus />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" minlength="8" required />
+
+        <label for="confirm_password">Confirm password</label>
+        <input type="password" id="confirm_password" name="confirm_password" minlength="8" required />
+
+        <button type="submit">Register</button>
+    </form>
+
+    <p class="muted">Already have an account? <a href="/login">Log in</a></p>
+{% endblock %}
