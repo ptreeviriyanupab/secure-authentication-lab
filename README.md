@@ -1,9 +1,5 @@
 # Secure Web Authentication (FastAPI + Argon2id + SQLite)
 
-A deliberately minimal registration/login demo, designed to be typed and
-run by students in a single 1-hour class session. No CSS, no HTML
-templates, no sessions/cookies -- just three plain Python files.
-
 ```
 Registration Page --> FastAPI --> Argon2id hash --> SQLite
 Login Page        --> FastAPI --> Argon2id verify --> Login success/failure
